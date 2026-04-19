@@ -27,7 +27,9 @@ import {
   LogOut, 
   ShieldAlert, 
   User as UserIcon,
-  Loader2
+  Loader2,
+  Eye,
+  EyeOff
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -48,6 +50,7 @@ export default function App() {
   const [authLoading, setAuthLoading] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const [view, setView] = useState<'form' | 'dashboard'>('form');
   const [colaborador, setColaborador] = useState('');
@@ -347,13 +350,26 @@ export default function App() {
             )}
 
             <form onSubmit={handleLogin} className="flex flex-col gap-4">
-              <Input
-                type="password"
-                placeholder="Senha de Acesso"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="h-14 bg-slate-900/50 border-slate-700/50 text-center text-lg placeholder:text-slate-500 tracking-widest focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 rounded-2xl"
-              />
+              <div className="relative group">
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Senha de Acesso"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="h-14 bg-slate-900/50 border-slate-700/50 text-center text-lg placeholder:text-slate-500 tracking-widest focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 rounded-2xl pr-14"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-cyan-400 transition-colors p-2 rounded-full hover:bg-white/5"
+                >
+                  {showPassword ? (
+                    <EyeOff className="w-5 h-5" />
+                  ) : (
+                    <Eye className="w-5 h-5" />
+                  )}
+                </button>
+              </div>
 
               <Button 
                 type="submit"

@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://play-lh.googleusercontent.com/BpgosTzb9wzfgCUTYhN6LvYIAB_A-aWozJCZ6vg0nN6-8ul97z2THmJrrB8aQSO73M4" alt="Dafiti Logo" width="250">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Dafiti_logo.png" alt="Dafiti Logo" width="250">
 
   # Portal de Controle de Desligamentos e Ativos de T.I.
   
@@ -20,14 +20,14 @@ Este projeto atua como **uma ponte blindada** entre a equipe da Recepção (que 
 Dentre as principais motivações que levaram ao desenvolvimento desta arquitetura, destacam-se:
 
 - **Soberania de Dados:** Eliminar a chance de operadores excluírem / danificarem acidentalmente bases do RH. A interface visual da Recepção possui "travas" de segurança; ela pode atualizar Status de Equipamentos, mas é incapaz de alterar ou apagar e-mails corporativos.
-- **Automação de E-mails:** Um poderoso Scanner em Apps Script que localiza envios dos robôs (planilhas autônomas), descompactando planilhas e registrando os desligados diretamente no banco central.
+- **Automação de E-mails:** Um poderoso Scanner em Apps Script que localiza envios dos robôs (planilhas autômatas), descompactando planilhas e registrando os desligados diretamente no banco central.
 - **Monitoria Ativa:** Um Dashboard gerencial robusto e um "Cronjob" oculto que avisa a liderança imediata (por E-mail e Dash) sempre que uma devolução ultrapassar a barreira crítica dos dias pendentes.
 - **UX/UI Aprimorado:** Tela de fácil aprendizagem, com cores focais para uso instintivo no dia a dia.
 
 ## 🏢 Governança do Projeto
 
 - **Departamento Responsável:** Tecnologia da Informação (T.I.) & Infraestrutura
-- **Líder e Arquiteto do Projeto:** Luiz Felipe Fernandes Sergio
+- **Líder e Arquiteto do Projeto:** Luiz Sérgio
 - **Empresa:** Dafiti Group
 
 ## 🛠️ Tecnologias e Arquitetura

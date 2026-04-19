@@ -251,14 +251,25 @@ export default function Dashboard({ onBack, userEmail }: DashboardProps) {
           </CardHeader>
           <CardContent className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={data.equipamentosMensal}>
+              <BarChart data={data.equipamentosMensal || []}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                <XAxis dataKey="month" stroke="#64748b" fontSize={10} tickLine={false} axisLine={false} />
+                <XAxis 
+                  dataKey={(obj) => obj.month || obj.mes || 'N/A'} 
+                  stroke="#64748b" 
+                  fontSize={10} 
+                  tickLine={false} 
+                  axisLine={false} 
+                />
                 <YAxis stroke="#64748b" fontSize={10} tickLine={false} axisLine={false} />
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '8px' }}
                 />
-                <Bar dataKey="count" fill="#10b981" radius={[4, 4, 0, 0]} name="Equipamentos" />
+                <Bar 
+                  dataKey={(obj) => obj.count || obj.quantidade || obj.valor || 0} 
+                  fill="#10b981" 
+                  radius={[4, 4, 0, 0]} 
+                  name="Equipamentos" 
+                />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>

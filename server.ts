@@ -1,5 +1,4 @@
 import express from "express";
-import { createServer as createViteServer } from "vite";
 import path from "path";
 import dotenv from "dotenv";
 import { fileURLToPath } from 'url';
@@ -67,7 +66,8 @@ async function startServer() {
     name: 'session',
     keys: [process.env.SESSION_SECRET || 'dafiti-ti-secret'],
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    secure: process.env.NODE_ENV === 'production', 
+    // Temporariamente forçando secure: false para diagnosticar se o problema é o HTTPS no proxy
+    secure: false, 
     sameSite: 'lax',
     httpOnly: true,
   }));
@@ -103,23 +103,37 @@ async function startServer() {
     const matchedLogin = validLogins.find(login => login.password === password);
 
     if (matchedLogin) {
+      console.log(`[AUTH] Login bem-sucedido para: ${matchedLogin.user.name}`);
       // @ts-ignore
-      req.session.user = matchedLogin.user; // Para manter coerência com resto do script (ex: /api/auth/status) se for usado
+      req.session.user = matchedLogin.user; 
+      console.log(`[AUTH] Cookie de sessão definido: ${!!req.session.user}`);
       res.json({
         success: true,
         user: matchedLogin.user
       });
     } else {
+      console.warn(`[AUTH] Tentativa de login falhou - Senha incorreta.`);
       res.status(401).json({ success: false, message: 'Senha incorreta' });
     }
   });
 
   // Middleware de Autenticação (A Blindagem Anti-Hacker)
   const requireAuth = (req: any, res: any, next: any) => {
-    // Se o invasor tentar bater direto na URL da API (Postman, Insomnia) sem ter o Cookie da sessão de Login válido, ele é barrado.
+    const proto = req.headers['x-forwarded-proto'];
+    console.log(`[AUTH] Rota: ${req.url} | Protocolo: ${proto || 'local'} | IP: ${req.ip}`);
+    
+    // Log do estado da sessão para depuração em produção
+    if (!req.session) {
+      console.error(`[AUTH] Erro Crítico: req.session é undefined!`);
+    }
+
     if (!req.session?.user) {
+      console.warn(`[AUTH] Acesso bloqueado - Sessão de usuário não encontrada. IP: ${req.ip}`);
+      console.log(`[AUTH] Cookies recebidos: ${req.headers.cookie ? 'Sim' : 'Não'}`);
       return res.status(401).json({ success: false, error: 'Acesso Negado: Sessão Inválida ou Expirada. Faça o login novamente.' });
     }
+    
+    console.log(`[AUTH] Acesso autorizado para: ${req.session.user.name}`);
     next();
   };
 
@@ -171,6 +185,13 @@ async function startServer() {
       }
 
       // Atualiza nossa camada de Cache com os dados novos processados pelo Google
+      const equipCount = result.data?.equipamentosMensal?.length || 0;
+      console.log(`[DASHBOARD] Dados recebidos. EquipamentosMensal: ${equipCount} itens.`);
+      
+      if (equipCount > 0) {
+        console.log(`[DASHBOARD] Formato do primeiro item:`, JSON.stringify(result.data.equipamentosMensal[0]));
+      }
+
       dashboardCache.data = result.data;
       dashboardCache.lastFetch = Date.now();
 
@@ -222,7 +243,7 @@ async function startServer() {
       
       // Tratativa de erro clara para expor erros do Zod no frontend
       if (error instanceof z.ZodError) {
-        return res.status(400).json({ error: error.errors[0].message });
+        return res.status(400).json({ error: error.issues[0].message });
       }
       
       res.status(500).json({ error: error.message });
@@ -260,6 +281,7 @@ async function startServer() {
 
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
