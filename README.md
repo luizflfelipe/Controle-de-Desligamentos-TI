@@ -13,7 +13,7 @@
 O **Controle de Desligamentos** nasceu da necessidade de modernizar, otimizar e assegurar a fidelidade no processo de offboarding da empresa. 
 Ao lidar com alto volume de colaboradores e trocas de equipamentos, os controles manuais e e-mails paralelos geravam lacunas de comunicação e risco de extravio de ativos (Notebooks, Celulares, Monitores, etc).
 
-Este projeto atua como **uma ponte blindada** entre a equipe da Recepção (que recolhe os equipamentos) e a equipe de T.I. e RH, sincronizando os dados em tempo real com uma base central (Google Sheets), garantindo que nada passe despercebido.
+Este projeto atua como **uma ponte blindada** entre a equipe da Recepção (que recolhe os equipamentos) e a equipe de T.I e RH, sincronizando os dados em tempo real com uma base central (Google Sheets), garantindo que nada passe despercebido.
 
 ## 🎯 Motivação e Objetivos
 
