@@ -4,13 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "tsx server.ts",
-  "build": "vite build",
-  "preview": "vite preview",
-  "clean": "rm -rf dist",
-  "lint": "tsc --noEmit",
-  "start": "tsx server.ts"  // <--- Adicione esta linha!
-},
+    "dev": "tsx server.ts",
+    "build": "vite build",
+    "preview": "vite preview",
+    "clean": "rm -rf dist",
+    "lint": "tsc --noEmit",
+    "start": "tsx server.ts"
+  },
   "dependencies": {
     "@base-ui/react": "^1.4.0",
     "@fontsource-variable/geist": "^5.2.8",
