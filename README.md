@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://pt.wikipedia.org/wiki/Dafiti" alt="Dafiti Logo" width="250">
+  <img src="https://play.google.com/store/apps/details?id=br.com.dafiti&hl=pt_BR" alt="Dafiti Logo" width="250">
 
   # Portal de Controle de Desligamentos e Ativos de T.I.
   
