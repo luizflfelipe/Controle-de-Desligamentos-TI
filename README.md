@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Dafiti_logo.png" alt="Dafiti Logo" width="250">
+  <img src="https://play-lh.googleusercontent.com/BpgosTzb9wzfgCUTYhN6LvYIAB_A-aWozJCZ6vg0nN6-8ul97z2THmJrrB8aQSO73M4" alt="Dafiti Logo" width="250">
 
   # Portal de Controle de Desligamentos e Ativos de T.I.
   
@@ -27,7 +27,7 @@ Dentre as principais motivações que levaram ao desenvolvimento desta arquitetu
 ## 🏢 Governança do Projeto
 
 - **Departamento Responsável:** Tecnologia da Informação (T.I.) & Infraestrutura
-- **Líder e Arquiteto do Projeto:** Luiz Sérgio
+- **Líder e Arquiteto do Projeto:** Luiz Felipe Fernandes Sergio
 - **Empresa:** Dafiti Group
 
 ## 🛠️ Tecnologias e Arquitetura
