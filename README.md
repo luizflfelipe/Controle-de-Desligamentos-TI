@@ -27,7 +27,7 @@ Dentre as principais motivações que levaram ao desenvolvimento desta arquitetu
 ## 🏢 Governança do Projeto
 
 - **Departamento Responsável:** Tecnologia da Informação (T.I.) & Infraestrutura
-- **Líder e Arquiteto do Projeto:** Luiz Sérgio
+- **Líder e Arquiteto do Projeto:** Luiz Felipe Fernandes Sergio
 - **Empresa:** Dafiti Group
 
 ## 🛠️ Tecnologias e Arquitetura
