@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://play-lh.googleusercontent.com/BpgosTzb9wzfgCUTYhN6LvYIAB_A-aWozJCZ6vg0nN6-8ul97z2THmJrrB8aQSO73M4" alt="Dafiti Logo" width="250">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Dafiti_logo.png" alt="Dafiti Logo" width="250">
 
   # Portal de Controle de Desligamentos e Ativos de T.I.
   
@@ -13,7 +13,7 @@
 O **Controle de Desligamentos** nasceu da necessidade de modernizar, otimizar e assegurar a fidelidade no processo de offboarding da empresa. 
 Ao lidar com alto volume de colaboradores e trocas de equipamentos, os controles manuais e e-mails paralelos geravam lacunas de comunicação e risco de extravio de ativos (Notebooks, Celulares, Monitores, etc).
 
-Este projeto atua como **uma ponte blindada** entre a equipe da Recepção (que recolhe os equipamentos) e a equipe de T.I e RH, sincronizando os dados em tempo real com uma base central (Google Sheets), garantindo que nada passe despercebido.
+Este projeto atua como **uma ponte blindada** entre a equipe da Recepção (que recolhe os equipamentos) e a equipe de T.I. e RH, sincronizando os dados em tempo real com uma base central (Google Sheets), garantindo que nada passe despercebido.
 
 ## 🎯 Motivação e Objetivos
 
@@ -27,7 +27,7 @@ Dentre as principais motivações que levaram ao desenvolvimento desta arquitetu
 ## 🏢 Governança do Projeto
 
 - **Departamento Responsável:** Tecnologia da Informação (T.I.) & Infraestrutura
-- **Líder e Arquiteto do Projeto:** Luiz Felipe Fernandes Sergio
+- **Líder e Arquiteto do Projeto:** Luiz Sérgio
 - **Empresa:** Dafiti Group
 
 ## 🛠️ Tecnologias e Arquitetura

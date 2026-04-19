@@ -317,8 +317,13 @@ export default function App() {
         >
           <Card className="bg-[#1e293b]/50 border-slate-800 backdrop-blur-2xl shadow-2xl overflow-hidden p-8 text-center">
             <div className="flex justify-center mb-8">
-              <div className="w-20 h-20 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-3xl flex items-center justify-center border border-cyan-500/30 shadow-lg shadow-cyan-500/10">
-                <LogIn className="w-10 h-10 text-cyan-400" />
+              <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center border border-cyan-500/30 shadow-lg shadow-cyan-500/10 transition-transform hover:scale-110 duration-300 overflow-hidden">
+                <img 
+                  src="https://play-lh.googleusercontent.com/BpgosTzb9wzfgCUTYhN6LvYIAB_A-aWozJCZ6vg0nN6-8ul97z2THmJrrB8aQSO73M4" 
+                  alt="Dafiti Icon" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
               </div>
             </div>
 
@@ -410,8 +415,13 @@ export default function App() {
             <div className="flex justify-between items-center mb-10 px-6 py-3 bg-slate-800/40 backdrop-blur-md rounded-2xl border border-slate-700/50 shadow-xl">
               <div className="flex items-center gap-4">
                 <div className="relative">
-                  <div className="w-10 h-10 rounded-xl bg-slate-700 flex items-center justify-center border-2 border-cyan-500/30">
-                    <UserIcon className="w-5 h-5 text-cyan-400" />
+                  <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center border-2 border-cyan-500/30 overflow-hidden shadow-inner shadow-slate-900/10">
+                    <img 
+                      src="https://play-lh.googleusercontent.com/BpgosTzb9wzfgCUTYhN6LvYIAB_A-aWozJCZ6vg0nN6-8ul97z2THmJrrB8aQSO73M4" 
+                      alt="Dafiti Icon" 
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
                   </div>
                   <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 border-2 border-[#0f172a] rounded-full" />
                 </div>
@@ -741,8 +751,14 @@ export default function App() {
         </Card>
 
         {/* Footer */}
-        <div className="mt-8 text-center text-slate-500 text-sm">
-          © 2026 Dafiti Group - TI Infraestrutura
+        <div className="mt-8 flex flex-col items-center gap-2 text-slate-500 text-sm">
+          <img 
+            src="https://play-lh.googleusercontent.com/BpgosTzb9wzfgCUTYhN6LvYIAB_A-aWozJCZ6vg0nN6-8ul97z2THmJrrB8aQSO73M4" 
+            alt="Dafiti Icon" 
+            className="w-8 h-8 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 pointer-events-none"
+            referrerPolicy="no-referrer"
+          />
+          <p>© 2026 Dafiti Group - TI Infraestrutura</p>
         </div>
       </div>
     </motion.div>

@@ -133,13 +133,23 @@ export default function Dashboard({ onBack, userEmail }: DashboardProps) {
     <div className="min-h-screen bg-[#020617] text-slate-200 p-4 md:p-8 font-sans">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-black tracking-tighter text-white uppercase flex items-center gap-3">
-            <span className="text-cyan-400">DASHBOARD DE</span> DESLIGAMENTOS
-          </h1>
-          <p className="text-slate-500 text-xs mt-1">
-            Última atualização: {data.lastUpdate}
-          </p>
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center border border-cyan-500/30 overflow-hidden shadow-lg shadow-cyan-500/5">
+            <img 
+              src="https://play-lh.googleusercontent.com/BpgosTzb9wzfgCUTYhN6LvYIAB_A-aWozJCZ6vg0nN6-8ul97z2THmJrrB8aQSO73M4" 
+              alt="Dafiti Icon" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div>
+            <h1 className="text-2xl md:text-3xl font-black tracking-tighter text-white uppercase flex items-center gap-3">
+              <span className="text-cyan-400">DASHBOARD DE</span> DESLIGAMENTOS
+            </h1>
+            <p className="text-slate-500 text-xs mt-1">
+              Última atualização: {data.lastUpdate}
+            </p>
+          </div>
         </div>
         
         <div className="flex gap-3">
