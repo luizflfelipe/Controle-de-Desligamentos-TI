@@ -356,7 +356,7 @@ export default function App() {
                   placeholder="Senha de Acesso"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="h-14 bg-slate-900/50 border-slate-700/50 text-center text-lg placeholder:text-slate-500 tracking-widest focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 rounded-2xl pr-14"
+                  className="h-14 bg-slate-900/50 border-slate-700/50 text-center text-lg text-white placeholder:text-slate-500 tracking-widest focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 rounded-2xl pr-14"
                 />
                 <button
                   type="button"
