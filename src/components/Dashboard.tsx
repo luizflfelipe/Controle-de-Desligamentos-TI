@@ -44,7 +44,12 @@ export default function Dashboard({ onBack, userEmail }: DashboardProps) {
           'x-user-email': userEmail
         }
       });
-      if (!response.ok) throw new Error('Falha ao carregar dados');
+      if (response.status === 401) {
+        localStorage.removeItem('dafiti_user');
+        window.location.reload();
+        return;
+      }
+      if (!response.ok) throw new Error('Falha ao carregar dados do Dashboard. Verifique a conexão.');
       const result = await response.json();
       setData(result);
       setError(null);

@@ -15,7 +15,6 @@ const __dirname = path.dirname(__filename);
 // Definição estrita do formato esperado para registrar desligamentos
 const registerSchema = z.object({
   colaborador: z.string().min(1, "O nome do colaborador é obrigatório").max(200, "Nome muito longo"),
-  email: z.string().max(200).optional().or(z.literal("")),
   equipamentoQuantidade: z.string().max(1000).optional(),
   equipDevolvido: z.string().max(100).optional(),
   controleMaju: z.string().max(100).optional()
@@ -115,8 +114,34 @@ async function startServer() {
     }
   });
 
-  // API routes
-  app.get("/api/dashboard-data", async (req, res) => {
+  // Middleware de Autenticação (A Blindagem Anti-Hacker)
+  const requireAuth = (req: any, res: any, next: any) => {
+    // Se o invasor tentar bater direto na URL da API (Postman, Insomnia) sem ter o Cookie da sessão de Login válido, ele é barrado.
+    if (!req.session?.user) {
+      return res.status(401).json({ success: false, error: 'Acesso Negado: Sessão Inválida ou Expirada. Faça o login novamente.' });
+    }
+    next();
+  };
+
+  // Endpoint Extra: Para o frontend saber se a sessão expirou e forçar logout
+  app.get('/api/auth/status', (req, res) => {
+    // @ts-ignore
+    if (req.session?.user) {
+      // @ts-ignore
+      res.json({ authenticated: true, user: req.session.user });
+    } else {
+      res.json({ authenticated: false });
+    }
+  });
+
+  app.post('/api/auth/logout', (req, res) => {
+    // @ts-ignore
+    req.session = null; // Destrói o cookie no Backend
+    res.json({ success: true });
+  });
+
+  // API routes protegidas pelo Middleware (requireAuth)
+  app.get("/api/dashboard-data", requireAuth, async (req, res) => {
     try {
       // ESTÁGIO 2: CAMADA DE CACHE (Memória)
       // Se tivermos os dados e ainda não se passaram os 2 minutos do CACHE_TTL
@@ -156,7 +181,7 @@ async function startServer() {
     }
   });
 
-  app.post("/api/register", async (req, res) => {
+  app.post("/api/register", requireAuth, async (req, res) => {
     try {
       // 1. Validação estrita e higienização (zod)
       const data = registerSchema.parse(req.body);
@@ -204,7 +229,7 @@ async function startServer() {
     }
   });
 
-  app.get("/api/fetch-external-data", async (req, res) => {
+  app.get("/api/fetch-external-data", requireAuth, async (req, res) => {
     try {
       const { url } = req.query;
       if (!url) throw new Error("URL da planilha não fornecida.");

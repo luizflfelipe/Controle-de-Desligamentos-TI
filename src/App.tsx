@@ -167,20 +167,30 @@ export default function App() {
         ...customEquipments.map(e => `${e.quantity}x ${e.name}`)
       ].join(", ");
 
+      const basePayload: Record<string, any> = {
+        colaborador: colaborador,
+        equipamentoQuantidade: equipList,
+        equipDevolvido: 'Devolvido',
+        controleMaju: 'Entregue'
+      };
+
       const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'x-user-email': user?.email || ''
         },
-        body: JSON.stringify({
-          colaborador,
-          email,
-          equipamentoQuantidade: equipList,
-          equipDevolvido: 'Devolvido',
-          controleMaju: 'Entregue'
-        }),
+        // Remove completamente a chave "email" da requisição.
+        // A chave só vai constar no JSON se for o Admin fazendo batch-import ou preenchendo um email válido.
+        // A planilha nunca substituirá nada porque o "email" sequer será transmitido.
+        body: JSON.stringify(basePayload),
       });
+
+      if (response.status === 401) {
+        localStorage.removeItem('dafiti_user');
+        window.location.reload();
+        return;
+      }
 
       const result = await response.json();
 
@@ -535,19 +545,6 @@ export default function App() {
                     const sanitizedValue = value.replace(/[0-9]/g, '');
                     setColaborador(sanitizedValue);
                   }}
-                  className="bg-[#0f172a]/50 border-slate-700 focus:border-cyan-500/50 focus:ring-cyan-500/20 text-white h-12"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-sm font-semibold text-slate-300">
-                  Email <span className="text-cyan-400 text-xs ml-1 font-normal">(Gerado automaticamente, editável)</span>
-                </Label>
-                <Input 
-                  id="email"
-                  placeholder="email@dafiti.com.br"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
                   className="bg-[#0f172a]/50 border-slate-700 focus:border-cyan-500/50 focus:ring-cyan-500/20 text-white h-12"
                 />
               </div>
