@@ -117,6 +117,35 @@ export default function App() {
     setView('form');
   };
 
+  // Limite de sessão de 15 minutos de inatividade
+  useEffect(() => {
+    if (!user) return; // Apenas monitora se estiver logado
+
+    let timeout: NodeJS.Timeout;
+
+    const logoutDueToInactivity = () => {
+      handleLogout();
+      // Opcional: mostrar um aviso (mas como a senha será pedida, a transição para a tela form já é auto-explicativa com logout)
+    };
+
+    const resetTimer = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(logoutDueToInactivity, 15 * 60 * 1000); // 15 minutos
+    };
+
+    // Inicia o timer logo que entrar
+    resetTimer();
+
+    // Eventos de atividade do usuário
+    const events = ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'];
+    events.forEach(event => window.addEventListener(event, resetTimer));
+
+    return () => {
+      clearTimeout(timeout);
+      events.forEach(event => window.removeEventListener(event, resetTimer));
+    };
+  }, [user]); // recria/re-inicia quando o usuário loga
+
   useEffect(() => {
     if (colaborador) {
       const nameParts = colaborador.toLowerCase().split(' ');
